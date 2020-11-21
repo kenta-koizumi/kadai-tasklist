@@ -21,14 +21,25 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 {{-- メッセージ作成ページへのリンク --}}
-                <li class="nav-item">{!! link_to_route('tasks.create', '新規作成', [], ['class' => 'nav-link']) !!}</li>
+                
+                @if (Auth::check())
+                    <li class="nav-item">{!! link_to_route('tasks.create', '新規作成', [], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('logout.get', 'Logout', [], ['class' => 'nav-link']) !!}</li>
+            </ul>
+                @else
+                    {{-- ユーザ登録ページへのリンク --}}
+                    <li class="nav-item">{!! link_to_route('signup.get', 'Signup', [], ['class' => 'nav-link']) !!}</li>
+                    {{-- ログインページへのリンク --}}
+                    <li class="nav-item">{!! link_to_route('login', 'Login', [], ['class' => 'nav-link']) !!}</li>
+                @endif
+                
             </ul>
         </div>
             </nav>
         </header>
 
         <div class="container">
-            @include('commons.navbar')
+            
             
             @include('commons.error_messages')
 
