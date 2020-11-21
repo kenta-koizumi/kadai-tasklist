@@ -28,6 +28,8 @@
         </header>
 
         <div class="container">
+            @include('commons.navbar')
+            
             @include('commons.error_messages')
 
             @yield('content')
