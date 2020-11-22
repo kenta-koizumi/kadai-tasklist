@@ -79,10 +79,15 @@ class TasksController extends Controller
      */
     public function show($id)
     {
+        
         $task = Task::findOrFail($id);
+        if (\Auth::id() === $task->user_id){
         return view('tasks.show',[
             'task' => $task,
             ]);
+        }else{
+            return redirect('/');
+        }
         //
     }
 
@@ -133,8 +138,9 @@ class TasksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    
     {
-        $task = Task::findOrFail($id);
+        $task = App\Task::findOrFail($id);
         if (\Auth::id() === $task->user_id){
         $task->delete();
         }
