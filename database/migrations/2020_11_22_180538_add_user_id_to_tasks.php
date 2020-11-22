@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUseridToTable extends Migration
+class AddUserIdToTasks extends Migration
 {
     /**
      * Run the migrations.
@@ -28,7 +28,7 @@ class AddUseridToTable extends Migration
      */
     public function down()
     {
-        $table->dropForeign('tasks_user_id_foreign');
-        Schema::dropIfExists('tasks');
+        $table->dropForeign(['user_id']);
+        Schema::dropIfExists('user_id');
     }
 }
